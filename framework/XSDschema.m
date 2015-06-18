@@ -79,7 +79,7 @@
         self.simpleTypes = [NSMutableArray array];
         
         /* Grab all elements that are in the schema base with the simpleType element tag */
-        NSArray* stNodes = [node nodesForXPath: @"/schema/simpleType" error: error];
+        NSArray* stNodes = [node nodesForXPath: @"*:simpleType" error: error];
 
         /* Iterate through the found elements */
         for (NSXMLElement* aChild in stNodes) {
@@ -91,7 +91,7 @@
         /* Add complex types */
         _knownComplexTypeDict = [NSMutableDictionary dictionary];
         self.complexTypes = [NSMutableArray array];
-        NSArray* ctNodes = [node nodesForXPath: @"/schema/complexType" error: error];
+        NSArray* ctNodes = [node nodesForXPath: @"*:complexType" error: error];
         /* Iterate through the complex types found and create node elements for them */
         for (NSXMLElement* aChild in ctNodes) {
             XSDcomplexType* aCT = [[XSDcomplexType alloc] initWithNode:aChild schema:self];
@@ -101,7 +101,7 @@
 
         /* Add the globals elements */
         NSMutableArray* globalElements = [NSMutableArray array];
-        NSArray* geNodes = [node nodesForXPath: @"/schema/element" error: error];
+        NSArray* geNodes = [node nodesForXPath: @"*:element" error: error];
         for (NSXMLElement* aChild in geNodes) {
             XSDelement* anElement = [[XSDelement alloc] initWithNode: aChild schema: self];
             [globalElements addObject: anElement];
@@ -142,8 +142,8 @@
         self.schemaUrl = schemaUrl;
         
         //handle includes & imports
-        NSArray* iNodes = [[doc rootElement] nodesForXPath: @"/schema/include" error: error];
-        NSArray* iNodes2 = [[doc rootElement] nodesForXPath: @"/schema/import" error: error];
+        NSArray* iNodes = [[doc rootElement] nodesForXPath: @"*:include" error: error];
+        NSArray* iNodes2 = [[doc rootElement] nodesForXPath: @"*:import" error: error];
         if(iNodes2.count) {
             NSMutableArray *newNodes = [iNodes2 mutableCopy];
             if(iNodes.count) {
