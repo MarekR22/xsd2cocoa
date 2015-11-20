@@ -329,7 +329,6 @@ this will be used to generate the class files for the complex types.
                         }
                     } else {% /if %} {
                         NSLog(@"Ignoring unexpected: %@", _currentElementName);
-                        break;
                     }
                 }
                 
