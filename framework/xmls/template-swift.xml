@@ -271,7 +271,6 @@ xsi:schemaLocation="http://www.example.com/xsd2cocoa template.xsd">
                             }
                         } else {% /if %} if(true) {
                             print("Ignoring unexpected: \(_currentElementName)")
-                            break
                         }
                     }
                     {% if type.hasComplexChildren %}_readerOk = handledInChild ? xmlTextReaderReadState(reader) : xmlTextReaderRead(reader){% else %}_readerOk = xmlTextReaderRead(reader){% /if %}
